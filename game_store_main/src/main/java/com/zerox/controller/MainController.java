@@ -12,9 +12,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 @Controller
 public class MainController {
-    @RequestMapping("/start")
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    /**
+     * 加上@ResponseBody注解的方法，返回字符串。不加则使用thymeleaf模板返回html网页
+     * @return 字符串
+     */
+    @RequestMapping("/returnString")
     @ResponseBody
-    public String start(){
-        return "Start game store web site";
+    public String returnString(){
+        return "returnString";
     }
 }
