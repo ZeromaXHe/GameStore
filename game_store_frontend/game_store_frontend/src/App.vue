@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+<!--    注释掉Vue的图片：<img src="./assets/logo.png">-->
     <router-view/>
   </div>
 </template>
