@@ -2,9 +2,74 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- 响应式 viewport meta 标签 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Bootstrap 所提供的 bootstrap.bundle.js 和 bootstrap.bundle.min.js 文件中包含了 Popper，但不包含 jQuery。-->
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#header").load("header.html");
+        });
+    </script>
+
     <title>登录页面</title>
 </head>
 <body>
-<h1>登录页面</h1>
+<div id="header"></div>
+<h1>登录页面 Login</h1>
+
+<form>
+    <div class="form-group">
+        <label for="accountInput">账号</label>
+        <input type="text" class="form-control" id="accountInput" aria-describedby="accountHelp">
+        <small id="accountHelp" class="form-text text-muted">输入您的账号</small>
+    </div>
+    <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" class="form-control" id="passwordInput">
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">记住我</label>
+    </div>
+    <button id="btnLogin" type="submit" class="btn btn-primary" onclick="login()">提交</button>
+</form>
+
+<script>
+    //FIXME: 目前重启服务后第一次登录没有反应
+    function login() {
+        var user = new Object();
+        user.username = $("#accountInput").val();
+        user.password = $("#passwordInput").val();
+        console.log('%s', JSON.stringify(user));
+        $.ajax({
+            url: '/mainLogin',
+            type: 'POST',
+            data: {inputJson: JSON.stringify(user)},
+            dataType: 'text',
+            success: function (data) {
+                var jsonObj = eval('('+data+')');
+                if (jsonObj.flag === "1") {
+                    alert(jsonObj.msg);
+                    //location.href='/login';
+                } else {
+                    alert(jsonObj.msg);
+                }
+            },
+            error: function () {
+                console.log('请求出错！');
+            }
+        })
+    };
+</script>
 </body>
 </html>
