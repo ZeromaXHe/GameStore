@@ -1,9 +1,8 @@
 package com.zerox.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.zerox.entity.DataDTO;
 import com.zerox.entity.UserDTO;
+import com.zerox.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -37,7 +36,7 @@ public class MainController {
     @ResponseBody
     public String mainLogin(@RequestParam String inputJson) {
         logger.info("inputJson: {}", inputJson);
-        UserDTO userDTO = JSONObject.parseObject(inputJson, UserDTO.class);
+        UserDTO userDTO = JsonUtils.jsonToObject(inputJson, UserDTO.class);
         DataDTO dataDTO = new DataDTO();
         if ("root".equals(userDTO.getUsername()) && "root".equals(userDTO.getPassword())) {
             dataDTO.setFlag("1");
@@ -46,7 +45,7 @@ public class MainController {
             dataDTO.setFlag("0");
             dataDTO.setMsg("登录失败，请检查账号和密码！");
         }
-        String output = JSON.toJSONString(dataDTO);
+        String output = JsonUtils.objectToJson(dataDTO);
         logger.info("output:{}", output);
         return output;
     }
