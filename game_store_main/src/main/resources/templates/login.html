@@ -41,13 +41,12 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">记住我</label>
     </div>
-    <button id="btnLogin" type="submit" class="btn btn-primary" onclick="login()">提交</button>
 </form>
+<button id="btnLogin" class="btn btn-primary" onclick="login()">提交</button>
 
 <script>
-    //FIXME: 目前重启服务后第一次登录没有反应
     function login() {
-        var user = new Object();
+        var user = {};
         user.username = $("#accountInput").val();
         user.password = $("#passwordInput").val();
         console.log('%s', JSON.stringify(user));
@@ -69,7 +68,7 @@
                 console.log('请求出错！');
             }
         })
-    };
+    }
 </script>
 </body>
 </html>
