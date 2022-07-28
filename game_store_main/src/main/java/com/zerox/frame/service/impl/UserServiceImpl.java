@@ -1,8 +1,8 @@
-package com.zerox.service.impl;
+package com.zerox.frame.service.impl;
 
 import com.zerox.entity.business.DataBO;
 import com.zerox.entity.business.UserBO;
-import com.zerox.service.UserService;
+import com.zerox.frame.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,4 +1,4 @@
-package com.zerox.service;
+package com.zerox.frame.service;
 
 import com.zerox.entity.business.DataBO;
 import com.zerox.entity.business.UserBO;

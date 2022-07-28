@@ -1,8 +1,8 @@
-package com.zerox.controller;
+package com.zerox.frame.controller;
 
 import com.zerox.entity.view.DataVO;
 import com.zerox.entity.view.UserVO;
-import com.zerox.service.UserService;
+import com.zerox.frame.service.UserService;
 import com.zerox.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

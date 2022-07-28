@@ -1,4 +1,4 @@
-package com.zerox.controller;
+package com.zerox.frame.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,5 +26,16 @@ public class TemplateController {
     public String login() {
         logger.info("调用登录页面");
         return "login";
+    }
+
+    /**
+     * 首页
+     *
+     * @return 首页
+     */
+    @RequestMapping(value = {"/", "/index"})
+    public String index() {
+        logger.info("调用首页");
+        return "index";
     }
 }

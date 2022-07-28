@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/" th:text="#{header.navbar.title}">导航栏标题占位符</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{index(l=${param.l})}" th:text="#{header.navbar.index}">首页占位符<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{login(l=${param.l})}" th:text="#{header.navbar.login}">登录占位符</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" th:text="#{header.navbar.dropdown}">
+                    下拉框占位符
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+                   th:text="#{header.navbar.disabled}">失效按钮占位符</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <!-- th:href="@{''(l='en_US')}" 表示在当前 url 上添加 l 参数为 en_US -->
+                    <a class="nav-link disabled" th:href="@{''(l='en_US')}" tabindex="1"
+                       th:if="${#strings.trim(param.l)}=='en_US'" aria-disabled="true"
+                       th:text="#{header.navbar.i18n.en}"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{''(l='en_US')}" tabindex="1"
+                       th:if="${#strings.trim(param.l)}!='en_US'" th:text="#{header.navbar.i18n.en}">英文占位符</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" th:href="@{''(l='zh_CN')}" tabindex="2"
+                       th:if="${#strings.trim(param.l)}=='zh_CN'" aria-disabled="true"
+                       th:text="#{header.navbar.i18n.zh}"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{''(l='zh_CN')}" tabindex="2"
+                       th:if="${#strings.trim(param.l)}!='zh_CN'" th:text="#{header.navbar.i18n.zh}">中文占位符</a>
+                </li>
+            </ul>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" th:text="#{header.navbar.search}">搜索占位符
+            </button>
+        </form>
+    </div>
+</nav>

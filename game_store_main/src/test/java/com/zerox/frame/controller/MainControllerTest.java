@@ -1,4 +1,4 @@
-package com.zerox.controller;
+package com.zerox.frame.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
