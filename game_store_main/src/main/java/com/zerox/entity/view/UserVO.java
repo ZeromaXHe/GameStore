@@ -1,14 +1,24 @@
-package com.zerox.entity;
+package com.zerox.entity.view;
+
+import com.zerox.entity.business.UserBO;
 
 /**
- * 用户DTO
- *
  * @author ZeromaXHe
- * @date 2020/7/19 17:55
+ * @apiNote 用户 VO
+ * @since 2020/7/19 17:55
  */
-public class UserDTO {
+public class UserVO {
     private String username;
     private String password;
+
+    public UserVO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public UserBO toUserBO() {
+        return new UserBO(username, password);
+    }
 
     public String getUsername() {
         return username;

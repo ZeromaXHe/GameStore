@@ -51,12 +51,12 @@
         user.password = $("#passwordInput").val();
         console.log('%s', JSON.stringify(user));
         $.ajax({
-            url: '/mainLogin',
+            url: '/user/login',
             type: 'POST',
-            data: {inputJson: JSON.stringify(user)},
-            dataType: 'text',
-            success: function (data) {
-                var jsonObj = eval('('+data+')');
+            data: JSON.stringify(user),
+            dataType: 'json',
+            contentType: "application/json",
+            success: function (jsonObj) {
                 if (jsonObj.flag === "1") {
                     alert(jsonObj.msg);
                     //location.href='/login';

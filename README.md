@@ -4,4 +4,4 @@
 
 ## 开发涉及到的一些技术点的记录
 
-thymeleaf修改页面后Ctrl+F9重新build一下，就可以直接刷新页面看效果了，不需要重新启动SpringBoot（前提是关闭了缓存）
+thymeleaf 修改页面后 Ctrl + F9 (Build -> Build Project) 重新 build 一下，就可以直接刷新页面看效果了，不需要重新启动 SpringBoot（前提是关闭了缓存）
