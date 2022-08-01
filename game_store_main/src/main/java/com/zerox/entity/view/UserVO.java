@@ -1,7 +1,5 @@
 package com.zerox.entity.view;
 
-import com.zerox.entity.business.UserBO;
-
 /**
  * @author ZeromaXHe
  * @apiNote 用户 VO
@@ -14,10 +12,6 @@ public class UserVO {
     public UserVO(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public UserBO toUserBO() {
-        return new UserBO(username, password);
     }
 
     public String getUsername() {

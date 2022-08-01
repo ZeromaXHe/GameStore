@@ -1,18 +1,22 @@
-package com.zerox.entity.business;
+package com.zerox.entity.domain;
 
 /**
  * @author zhuxi
  * @apiNote
  * @implNote
- * @since 2022/7/28 11:07
+ * @since 2022/8/1 15:28
  */
-public class UserBO {
+public class UserDO {
+    private Integer userId;
     private String username;
     private String password;
 
-    public UserBO(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public UserDO(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getUserId() {
+        return userId;
     }
 
     public String getUsername() {

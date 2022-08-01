@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-    final UserService userService;
+    private final UserService userService;
 
     public MainController(UserService userService) {
         this.userService = userService;
@@ -32,7 +32,16 @@ public class MainController {
     @PostMapping("/user/login")
     public ResponseEntity<String> login(@RequestBody UserVO userVO) {
         logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
-        DataVO result = userService.login(userVO.toUserBO()).toDataVO();
+        DataVO result = userService.login(userVO.getUsername(), userVO.getPassword()).toDataVO();
+        String output = JsonUtils.objectToJson(result);
+        logger.info("output:{}", output);
+        return ResponseEntity.ok(output);
+    }
+
+    @PostMapping("/user/register")
+    public ResponseEntity<String> register(@RequestBody UserVO userVO) {
+        logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
+        DataVO result = userService.register(userVO.getUsername(), userVO.getPassword()).toDataVO();
         String output = JsonUtils.objectToJson(result);
         logger.info("output:{}", output);
         return ResponseEntity.ok(output);

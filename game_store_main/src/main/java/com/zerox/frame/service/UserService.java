@@ -1,7 +1,6 @@
 package com.zerox.frame.service;
 
 import com.zerox.entity.business.DataBO;
-import com.zerox.entity.business.UserBO;
 
 /**
  * @author zhuxi
@@ -10,5 +9,7 @@ import com.zerox.entity.business.UserBO;
  * @since 2022/7/28 10:36
  */
 public interface UserService {
-    DataBO login(UserBO userBO);
+    DataBO login(String userName, String password);
+
+    DataBO register(String userName, String password);
 }

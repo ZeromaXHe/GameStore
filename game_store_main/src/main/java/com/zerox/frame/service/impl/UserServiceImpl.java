@@ -1,7 +1,9 @@
 package com.zerox.frame.service.impl;
 
+import com.zerox.constant.UserConstant;
 import com.zerox.entity.business.DataBO;
-import com.zerox.entity.business.UserBO;
+import com.zerox.entity.domain.UserDO;
+import com.zerox.frame.dao.UserDAO;
 import com.zerox.frame.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
+    private final UserDAO userDAO;
+
+    public UserServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
     @Override
-    public DataBO login(UserBO userBO) {
-        if ("root".equals(userBO.getUsername()) && "root".equals(userBO.getPassword())) {
-            return new DataBO("1", "登录成功！");
+    public DataBO login(String userName, String password) {
+        UserDO user = userDAO.getUser(userName, password);
+        if (user != null) {
+            return new DataBO("1", UserConstant.LOGIN_SUCCESS);
         } else {
-            return new DataBO("0", "登录失败，请检查账号和密码！");
+            return new DataBO("0", UserConstant.LOGIN_FAIL);
+        }
+    }
+
+    @Override
+    public DataBO register(String userName, String password) {
+        UserDO user = userDAO.addUser(userName, password);
+        if (user != null) {
+            return new DataBO("1", UserConstant.REGISTER_SUCCESS);
+        } else {
+            return new DataBO("0", UserConstant.REGISTER_FAIL);
         }
     }
 }
