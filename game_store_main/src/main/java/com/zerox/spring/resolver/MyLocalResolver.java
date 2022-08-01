@@ -1,4 +1,4 @@
-package com.zerox.spring;
+package com.zerox.spring.resolver;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;

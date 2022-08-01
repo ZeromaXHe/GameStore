@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.zerox.constant.UserConstant;
 import com.zerox.entity.view.DataVO;
 import com.zerox.entity.view.UserVO;
-import com.zerox.frame.service.UserService;
 import com.zerox.utils.JsonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class MainControllerTest {
 
     @Test
     public void testLoginAndRegister() {
-        // FIXME: 逻辑和实际代码有重复。感觉这样的单元测试写的有点问题
+        // FIXME: 逻辑和实际代码有重复，感觉这样的单元测试写的有点问题。而且因为 Service 是真实的，所以应该属于集成测试的范围
         assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("0", UserConstant.LOGIN_FAIL))),
                 mainController.login(new UserVO("zzz", "")));
         assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("0", UserConstant.LOGIN_FAIL))),

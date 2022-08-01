@@ -1,4 +1,4 @@
-package com.zerox.mock;
+package com.zerox.frame.dao.impl;
 
 import com.zerox.entity.domain.UserDO;
 import com.zerox.frame.dao.UserDAO;

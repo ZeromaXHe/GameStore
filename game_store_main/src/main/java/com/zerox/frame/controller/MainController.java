@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
+
 /**
  * @author ZeromaXHe
  * @since 2020/7/18 16:11
@@ -30,7 +32,7 @@ public class MainController {
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<String> login(@RequestBody UserVO userVO) {
+    public ResponseEntity<String> login(@RequestBody @Valid UserVO userVO) {
         logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
         DataVO result = userService.login(userVO.getUsername(), userVO.getPassword()).toDataVO();
         String output = JsonUtils.objectToJson(result);
@@ -39,7 +41,7 @@ public class MainController {
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<String> register(@RequestBody UserVO userVO) {
+    public ResponseEntity<String> register(@RequestBody @Valid UserVO userVO) {
         logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
         DataVO result = userService.register(userVO.getUsername(), userVO.getPassword()).toDataVO();
         String output = JsonUtils.objectToJson(result);
