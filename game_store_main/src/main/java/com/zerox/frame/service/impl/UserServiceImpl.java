@@ -1,5 +1,6 @@
 package com.zerox.frame.service.impl;
 
+import com.zerox.constant.ReturnCode;
 import com.zerox.constant.UserConstant;
 import com.zerox.entity.business.DataBO;
 import com.zerox.entity.domain.UserDO;
@@ -25,9 +26,9 @@ public class UserServiceImpl implements UserService {
     public DataBO login(String userName, String password) {
         UserDO user = userDAO.getUser(userName, password);
         if (user != null) {
-            return new DataBO("1", UserConstant.LOGIN_SUCCESS);
+            return new DataBO(ReturnCode.BUSINESS_OK.getCode(), UserConstant.LOGIN_SUCCESS);
         } else {
-            return new DataBO("0", UserConstant.LOGIN_FAIL);
+            return new DataBO(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.LOGIN_FAIL);
         }
     }
 
@@ -35,9 +36,9 @@ public class UserServiceImpl implements UserService {
     public DataBO register(String userName, String password) {
         UserDO user = userDAO.addUser(userName, password);
         if (user != null) {
-            return new DataBO("1", UserConstant.REGISTER_SUCCESS);
+            return new DataBO(ReturnCode.BUSINESS_OK.getCode(), UserConstant.REGISTER_SUCCESS);
         } else {
-            return new DataBO("0", UserConstant.REGISTER_FAIL);
+            return new DataBO(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.REGISTER_FAIL);
         }
     }
 }

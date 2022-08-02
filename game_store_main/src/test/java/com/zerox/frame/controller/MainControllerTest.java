@@ -2,8 +2,9 @@ package com.zerox.frame.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.zerox.constant.ReturnCode;
 import com.zerox.constant.UserConstant;
-import com.zerox.entity.view.DataVO;
+import com.zerox.entity.view.RespDataVO;
 import com.zerox.entity.view.UserVO;
 import com.zerox.utils.JsonUtils;
 import org.junit.jupiter.api.Test;
@@ -25,17 +26,23 @@ public class MainControllerTest {
     @Test
     public void testLoginAndRegister() {
         // FIXME: 逻辑和实际代码有重复，感觉这样的单元测试写的有点问题。而且因为 Service 是真实的，所以应该属于集成测试的范围
-        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("0", UserConstant.LOGIN_FAIL))),
+        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
+                        new RespDataVO<String>(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.LOGIN_FAIL))),
                 mainController.login(new UserVO("zzz", "")));
-        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("0", UserConstant.LOGIN_FAIL))),
+        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
+                        new RespDataVO<String>(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.LOGIN_FAIL))),
                 mainController.login(new UserVO("root", "root")));
-        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("1", UserConstant.REGISTER_SUCCESS))),
+        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
+                        new RespDataVO<String>(ReturnCode.BUSINESS_OK.getCode(), UserConstant.REGISTER_SUCCESS))),
                 mainController.register(new UserVO("root", "root")));
-        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("0", UserConstant.REGISTER_FAIL))),
+        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
+                        new RespDataVO<String>(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.REGISTER_FAIL))),
                 mainController.register(new UserVO("root", "redundant")));
-        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("0", UserConstant.LOGIN_FAIL))),
+        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
+                        new RespDataVO<>(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.LOGIN_FAIL))),
                 mainController.login(new UserVO("zzz", "")));
-        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(new DataVO("1", UserConstant.LOGIN_SUCCESS))),
+        assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
+                        new RespDataVO<String>(ReturnCode.BUSINESS_OK.getCode(), UserConstant.LOGIN_SUCCESS))),
                 mainController.login(new UserVO("root", "root")));
     }
 }

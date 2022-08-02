@@ -1,6 +1,6 @@
 package com.zerox.entity.business;
 
-import com.zerox.entity.view.DataVO;
+import com.zerox.entity.view.RespDataVO;
 
 /**
  * @author zhuxi
@@ -9,23 +9,23 @@ import com.zerox.entity.view.DataVO;
  * @since 2022/7/28 11:13
  */
 public class DataBO {
-    private String flag;
+    private Integer flag;
     private String msg;
 
-    public DataBO(String flag, String msg) {
+    public DataBO(Integer flag, String msg) {
         this.flag = flag;
         this.msg = msg;
     }
 
-    public DataVO toDataVO() {
-        return new DataVO(flag, msg);
+    public RespDataVO<String> toRespDataVO() {
+        return new RespDataVO<>(flag, msg);
     }
 
-    public String getFlag() {
+    public Integer getFlag() {
         return flag;
     }
 
-    public void setFlag(String flag) {
+    public void setFlag(Integer flag) {
         this.flag = flag;
     }
 

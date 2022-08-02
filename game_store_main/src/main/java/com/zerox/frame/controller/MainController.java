@@ -1,6 +1,6 @@
 package com.zerox.frame.controller;
 
-import com.zerox.entity.view.DataVO;
+import com.zerox.entity.view.RespDataVO;
 import com.zerox.entity.view.UserVO;
 import com.zerox.frame.service.UserService;
 import com.zerox.utils.JsonUtils;
@@ -9,12 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.validation.Valid;
 
 /**
  * @author ZeromaXHe
@@ -32,18 +31,18 @@ public class MainController {
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<String> login(@RequestBody @Valid UserVO userVO) {
+    public ResponseEntity<String> login(@RequestBody @Validated({UserVO.UserCheckSequence.class}) UserVO userVO) {
         logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
-        DataVO result = userService.login(userVO.getUsername(), userVO.getPassword()).toDataVO();
+        RespDataVO<String> result = userService.login(userVO.getUsername(), userVO.getPassword()).toRespDataVO();
         String output = JsonUtils.objectToJson(result);
         logger.info("output:{}", output);
         return ResponseEntity.ok(output);
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<String> register(@RequestBody @Valid UserVO userVO) {
+    public ResponseEntity<String> register(@RequestBody @Validated({UserVO.UserCheckSequence.class}) UserVO userVO) {
         logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
-        DataVO result = userService.register(userVO.getUsername(), userVO.getPassword()).toDataVO();
+        RespDataVO<String> result = userService.register(userVO.getUsername(), userVO.getPassword()).toRespDataVO();
         String output = JsonUtils.objectToJson(result);
         logger.info("output:{}", output);
         return ResponseEntity.ok(output);
