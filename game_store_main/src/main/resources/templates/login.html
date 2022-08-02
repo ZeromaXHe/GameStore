@@ -51,15 +51,21 @@
             dataType: 'json',
             contentType: "application/json",
             success: function (jsonObj) {
-                if (jsonObj.flag === "1") {
+                if (jsonObj.flag === 0) {
+                    console.log("登录成功！");
                     alert(jsonObj.msg);
                     //location.href='/login';
                 } else {
+                    console.log("登录失败！flag: " + jsonObj.flag);
                     alert(jsonObj.msg);
                 }
             },
-            error: function () {
-                console.log('请求出错！');
+            error: function (jqXHR, textStatus, exception) {
+                console.log('登录过程出错！');
+                if (jqXHR.status === 400) {
+                    /*弹出 jqXHR 对象的信息*/
+                    alert(eval("(" + jqXHR.responseText + ")").msg);
+                }
             }
         })
     }
