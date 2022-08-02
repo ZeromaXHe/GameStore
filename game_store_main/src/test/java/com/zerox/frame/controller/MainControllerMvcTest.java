@@ -51,8 +51,7 @@ public class MainControllerMvcTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json(Objects.requireNonNull(JsonUtils.objectToJson(
                         new RespDataVO<String>(ReturnCode.VALIDATION_FAIL.getCode(),
-                                // TODO: 使用 @GroupSequence 后，组与组之间属于快速失败，有待修改
-                                "username 错误: 用户名不能为空"/* + "; password 错误: 密码不能为空"*/)))));
+                                "password 错误: 密码不能为空; username 错误: 用户名不能为空")))));
         mockMvc.perform(post("/user/login")
                         .contentType("application/json")
                         .content(Objects.requireNonNull(JsonUtils.objectToJson(new UserVO("root", "root")))))

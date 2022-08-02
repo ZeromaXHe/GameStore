@@ -31,7 +31,7 @@ public class MainController {
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<String> login(@RequestBody @Validated({UserVO.UserCheckSequence.class}) UserVO userVO) {
+    public ResponseEntity<String> login(@RequestBody @Validated UserVO userVO) {
         logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
         RespDataVO<String> result = userService.login(userVO.getUsername(), userVO.getPassword()).toRespDataVO();
         String output = JsonUtils.objectToJson(result);
@@ -40,7 +40,7 @@ public class MainController {
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<String> register(@RequestBody @Validated({UserVO.UserCheckSequence.class}) UserVO userVO) {
+    public ResponseEntity<String> register(@RequestBody @Validated UserVO userVO) {
         logger.info("inputJson: {}", JsonUtils.objectToJson(userVO));
         RespDataVO<String> result = userService.register(userVO.getUsername(), userVO.getPassword()).toRespDataVO();
         String output = JsonUtils.objectToJson(result);

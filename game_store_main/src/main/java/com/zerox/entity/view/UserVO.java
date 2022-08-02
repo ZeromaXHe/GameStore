@@ -1,6 +1,5 @@
 package com.zerox.entity.view;
 
-import javax.validation.GroupSequence;
 import javax.validation.constraints.NotEmpty;
 
 /**
@@ -9,9 +8,9 @@ import javax.validation.constraints.NotEmpty;
  * @since 2020/7/19 17:55
  */
 public class UserVO {
-    @NotEmpty(message = "用户名不能为空", groups = {UsernameCheck.class})
+    @NotEmpty(message = "用户名不能为空")
     private String username;
-    @NotEmpty(message = "密码不能为空", groups = {PasswordCheck.class})
+    @NotEmpty(message = "密码不能为空")
     private String password;
 
     public UserVO(String username, String password) {
@@ -33,15 +32,5 @@ public class UserVO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public interface UsernameCheck {
-    }
-
-    public interface PasswordCheck {
-    }
-
-    @GroupSequence({UsernameCheck.class, PasswordCheck.class})
-    public interface UserCheckSequence {
     }
 }
