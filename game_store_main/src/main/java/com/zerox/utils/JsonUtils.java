@@ -2,6 +2,8 @@ package com.zerox.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author zhuxi
@@ -10,6 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @since 2022/7/27 17:08
  */
 public class JsonUtils {
+    private static final Logger logger = LoggerFactory.getLogger(JsonUtils.class);
+
     // Jackson 的 ObjectMapper 在配置不修改的情况下是线程安全的，详情请在源码中搜索 thread-safe
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -17,7 +21,7 @@ public class JsonUtils {
         try {
             return mapper.readValue(json, objectClass);
         } catch (JsonProcessingException e) {
-            // TODO: 异常处理逻辑
+            logger.error("JsonUtils.jsonToObject failed|{}|{}", json, objectClass.getSimpleName());
             return null;
         }
     }
@@ -26,7 +30,7 @@ public class JsonUtils {
         try {
             return mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
-            // TODO: 异常处理逻辑
+            logger.error("JsonUtils.jsonToObject failed|{}", object);
             return null;
         }
     }
