@@ -1,7 +1,5 @@
 package com.zerox.entity.domain;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +17,7 @@ import javax.persistence.Table;
 @Table(name = "user_tbl")
 public class UserDO {
     @Id
-    @GeneratedValue(generator = "userIdGen", strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "userIdGen", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
     private String username;
