@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public DataBO login(String userName, String password) {
-        UserDO user = userDAO.getUser(userName, password);
+        UserDO user = userDAO.findByUsernameAndPassword(userName, password);
         if (user != null) {
             return new DataBO(ReturnCode.BUSINESS_OK.getCode(), UserConstant.LOGIN_SUCCESS);
         } else {
@@ -34,11 +34,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public DataBO register(String userName, String password) {
-        UserDO user = userDAO.addUser(userName, password);
-        if (user != null) {
-            return new DataBO(ReturnCode.BUSINESS_OK.getCode(), UserConstant.REGISTER_SUCCESS);
-        } else {
+        UserDO formerUser = userDAO.findByUsername(userName);
+        if (formerUser != null) {
             return new DataBO(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.REGISTER_FAIL);
         }
+        UserDO newUser = new UserDO();
+        newUser.setUsername(userName);
+        newUser.setPassword(password);
+        userDAO.save(newUser);
+        return new DataBO(ReturnCode.BUSINESS_OK.getCode(), UserConstant.REGISTER_SUCCESS);
     }
 }

@@ -28,7 +28,7 @@ public class MainControllerTest {
         // FIXME: 逻辑和实际代码有重复，感觉这样的单元测试写的有点问题。而且因为 Service 是真实的，所以应该属于集成测试的范围
         assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
                         new RespDataVO<String>(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.LOGIN_FAIL))),
-                mainController.login(new UserVO("zzz", "")));
+                mainController.login(new UserVO("zzz", "zzz")));
         assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
                         new RespDataVO<String>(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.LOGIN_FAIL))),
                 mainController.login(new UserVO("root", "root")));
@@ -40,7 +40,7 @@ public class MainControllerTest {
                 mainController.register(new UserVO("root", "redundant")));
         assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
                         new RespDataVO<>(ReturnCode.BUSINESS_FAIL.getCode(), UserConstant.LOGIN_FAIL))),
-                mainController.login(new UserVO("zzz", "")));
+                mainController.login(new UserVO("zzz", "zzz")));
         assertEquals(ResponseEntity.ok(JsonUtils.objectToJson(
                         new RespDataVO<String>(ReturnCode.BUSINESS_OK.getCode(), UserConstant.LOGIN_SUCCESS))),
                 mainController.login(new UserVO("root", "root")));

@@ -1,6 +1,7 @@
 package com.zerox.frame.dao;
 
 import com.zerox.entity.domain.UserDO;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author zhuxi
@@ -8,8 +9,7 @@ import com.zerox.entity.domain.UserDO;
  * @implNote
  * @since 2022/8/1 15:26
  */
-public interface UserDAO {
-    UserDO getUser(String userName, String password);
-
-    UserDO addUser(String userName, String password);
+public interface UserDAO extends JpaRepository<UserDO, Integer> {
+    UserDO findByUsernameAndPassword(String username, String password);
+    UserDO findByUsername(String username);
 }

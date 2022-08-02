@@ -1,22 +1,41 @@
 package com.zerox.entity.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author zhuxi
  * @apiNote
  * @implNote
  * @since 2022/8/1 15:28
  */
+@Entity
+@Table(name = "user_tbl")
 public class UserDO {
-    private Integer userId;
+    @Id
+    @GeneratedValue(generator = "userIdGen", strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "userIdGen", strategy = "native")
+    private Integer id;
+    @Column(nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
 
-    public UserDO(Integer userId) {
-        this.userId = userId;
+    public UserDO() {
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
